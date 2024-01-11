@@ -1,8 +1,8 @@
 import pygame
 from network import Network
 
-S_W, S_H = 1000, 700
-WIDTH, HEIGHT = 800, 600
+S_W, S_H = 400, 500
+WIDTH, HEIGHT = 400, 400
 MAZE_WIDTH, MAZE_HEIGHT = 4, 4
 BACKGROUND_COLOR = (51, 51, 51)
 AGENT_COLOR = (255, 0, 0)
@@ -52,10 +52,10 @@ reached_goal = False
 def displayHint(action):
     font = pygame.font.Font(None, 36)
     text = font.render(action, True, (255, 255, 255))  # White text color
-    text_rect = text.get_rect(center=(S_W - 500, S_H - 50))
+    text_rect = text.get_rect(center=(200 , 440))
 
-    rect_width = text_rect.width + 20
-    rect_height = text_rect.height + 20
+    rect_width = text_rect.width - 20
+    rect_height = text_rect.height - 20
 
     rect_surface = pygame.Surface((rect_width, rect_height))
     rect_surface.fill((51, 51, 51))  # Dark gray background color
@@ -64,7 +64,7 @@ def displayHint(action):
     win.fill(BACKGROUND_COLOR)
 
     # Adjust the position of the hint box
-    hint_position = (S_W - rect_width // 2, S_H - rect_height - 10)
+    hint_position = (400, 400)
 
     win.blit(rect_surface, hint_position)
     win.blit(text, text_rect.topleft)

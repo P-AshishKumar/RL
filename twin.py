@@ -3,7 +3,7 @@ import random
 
 from network import Network
 
-WIDTH, HEIGHT = 800, 600
+WIDTH, HEIGHT = 400, 400
 MAZE_WIDTH, MAZE_HEIGHT = 4, 4
 CELL_SIZE = WIDTH // MAZE_WIDTH, HEIGHT // MAZE_HEIGHT
 AGENT_COLOR = (255, 0, 0)

@@ -4,7 +4,7 @@ import socket
 class Network:
     def __init__(self):
         self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.server = "10.70.196.32"
+        self.server = socket.gethostname()
         self.port = 5556
         self.addr = (self.server, self.port)
         self.pos = self.connect()

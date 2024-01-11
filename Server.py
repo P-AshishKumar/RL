@@ -2,7 +2,7 @@ import socket
 from _thread import *
 import sys
 
-server = "10.70.196.32"
+server = socket.gethostname()
 port = 5556
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
