@@ -1,16 +1,17 @@
 import pygame
+from network import Network
 
+S_W, S_H = 1000, 700
 WIDTH, HEIGHT = 800, 600
-MAZE_WIDTH, MAZE_HEIGHT = 8, 8
+MAZE_WIDTH, MAZE_HEIGHT = 4, 4
 BACKGROUND_COLOR = (51, 51, 51)
 AGENT_COLOR = (255, 0, 0)
 WALL_COLOR = (0, 0, 0)
 CELL_SIZE = WIDTH // MAZE_WIDTH, HEIGHT // MAZE_HEIGHT
 
-
 pygame.init()
 
-win = pygame.display.set_mode((WIDTH, HEIGHT))
+win = pygame.display.set_mode((S_W, S_H))
 pygame.display.set_caption("Maze Game")
 
 maze = [
@@ -48,6 +49,32 @@ running = True
 clock = pygame.time.Clock()
 reached_goal = False
 
+def displayHint(action):
+    font = pygame.font.Font(None, 36)
+    text = font.render(action, True, (255, 255, 255))  # White text color
+    text_rect = text.get_rect(center=(S_W - 500, S_H - 50))
+
+    rect_width = text_rect.width + 20
+    rect_height = text_rect.height + 20
+
+    rect_surface = pygame.Surface((rect_width, rect_height))
+    rect_surface.fill((51, 51, 51))  # Dark gray background color
+
+    # Fill the screen with the background color
+    win.fill(BACKGROUND_COLOR)
+
+    # Adjust the position of the hint box
+    hint_position = (S_W - rect_width // 2, S_H - rect_height - 10)
+
+    win.blit(rect_surface, hint_position)
+    win.blit(text, text_rect.topleft)
+
+
+def make_pos(tup):
+    return str(tup[0]) + "," + str(tup[1])
+
+first_action = True
+n = Network()
 while running:
     clock.tick(30)
 
@@ -65,6 +92,18 @@ while running:
                 agent_position[1] += 1
 
 
+
+
+
+
+
+
+
+
+
+    server_response = n.send(make_pos(agent_position))
+    displayHint("Best Action: "+ server_response )
+
     layout()
     if agent_position == goal_position:
         font = pygame.font.Font(None, 36)
@@ -81,9 +120,5 @@ while running:
         win.blit(text, text_rect.topleft)
 
         reached_goal = True
-
-
     pygame.display.update()
-
-
 pygame.quit()
