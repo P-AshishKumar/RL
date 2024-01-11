@@ -33,6 +33,8 @@ python twin.py
 - Actions are twinned with the Q-learning model in twin.py.
 - Q-learning suggests hints for the next action.
 
+<img src="game_video.gif" width="520">
+
 ## Folder Structure
 - maze.py: Maze game interface.
 - twin.py: Q-learning twin for providing hints.

@@ -152,11 +152,11 @@ while running :
 
 
 
-    if agent_position == goal_position :
+    if agent_position == goal_position and not reached :
         episode += 1
         # print(q_table)
 
-        if user_start_position and episode > 10 and user_start_position != goal_position :
+        if user_start_position and episode > 15 and user_start_position != goal_position :
             reset_to_user_start()
             print("Reset to user's start position:", user_start_position)
 
